@@ -61,6 +61,10 @@ body{
 	
 }
 
+/*////////////////////////////////////////////
+	HEADER
+////////////////////////////////////////////*/
+
 .header{
 	background-color: #a2c17d;
 	background-image: url(../img/grass.png);
@@ -103,21 +107,136 @@ body{
 	padding-right: 4px;
 }
 
-/*.header > div div{
-	border-left: 3px white solid;
-	padding-left: 5px;
-}*/
+/*////////////////////////////////////////////
+	MAIN-CONTENT
+////////////////////////////////////////////*/
 
-.intro{
-	height: 610px;
+.main-content{
+	overflow: auto;
+	border-left: 5px white solid;
+	border-right: 5px white solid;
+	background-image: url(../img/vine.png);
+	background-repeat: no-repeat;
+	background-position: 32% 120%;
+
+	color: #7a5023;
 }
+
+.main-content > div{
+	text-align: center;
+	float: left;
+	width: 50%;
+}
+
+.main-content h2{
+	font-family: janson;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 2.5em;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.main-content h3{
+	font-family: janson;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.75em;
+	margin-top: 50px;
+}
+
+.main-content p{
+	font-family: gotham-light;
+	line-height: 1.75;
+}
+
+.main-content > img{
+	float: right;
+	width: 50%;
+}
+
+.main-content .content-head{
+	border-top: 2px #7a5023 dotted;
+	border-bottom: 2px #7a5023 dotted;
+	width: 376px;
+	margin: 50px auto;
+}
+
+.main-content .content-body{
+	width: 370px;
+	margin: 50px auto;
+}
+
+/*////////////////////////////////////////////
+	SERVICES DESCRIPTION
+////////////////////////////////////////////*/
 
 .services{
 	background-color: #6aaec8;
-	height: 380px;
 	border: 5px white solid;
+	border-top: 0px;
+
+	color: white;
+
+	overflow: auto;
+	padding-bottom: 35px;
+}
+
+.services .services-list{
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+
+.services .services-list h4{
+	font-family: janson;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.5em;
+}
+
+.services .services-list img{
+	width: 376px;
+	border: 3px white solid;
+}
+
+.services .services-body{
+	width: 50%;
+	float: right;
+	border-top: 4px white solid;
+	margin-top: 47px;
+	padding-top: 28px;
+}
+
+.services .services-body p{
+	font-family: gotham-light;
+	line-height: 2;
+	padding-right: 20px;
+}
+
+.services .services-body p:last-child{
+	font-family: gotham-medium;
+	padding-right: 20px;
 }
 
 .footer{
-	width: 960;
+	width: 960px;
+	margin-top: 40px;
+	padding-bottom: 40px;
+	color: #7a5023;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer p{
+	font-family: gotham-bold;
+	font-size: .75em;
+}
+
+.footer p:first-child{
+	float: left;
+}
+
+.footer p:last-child{
+	float: right;
 }
