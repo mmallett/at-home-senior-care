@@ -4,11 +4,17 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
-$bootstrap = <<SCRIPT
-sudo apt-get update
-sudo apt-get install -y apache2
+$host_files = <<SCRIPT
+
 rm -rf /var/www
 ln -fs /vagrant /var/www
+
+SCRIPT
+
+$core_deps = <<SCRIPT
+
+sudo apt-get update
+sudo apt-get install -y apache2
 
 sudo apt-get install -y git 
 sudo apt-get install -y vim
@@ -16,19 +22,29 @@ sudo apt-get install -y vim
 sudo apt-get install -y libapache2-mod-php5
 sudo a2enmod php5
 
-sudo apt-get install -y php-pear
-sudo pear install -a mail
-
 SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
-  config.vm.hostname = 'vulcan'
-  config.vm.box='hashicorp/precise64'
-  config.vm.network :private_network, ip: '192.168.50.3'
-  config.vm.network 'forwarded_port', guest: 80, host: 8080
-  config.vm.provision 'shell', inline: $bootstrap
+  config.vm.define "static" do |static|
+    static.vm.hostname = 'vulcan'
+    static.vm.box='hashicorp/precise64'
+    static.vm.network :private_network, ip: '192.168.50.3'
+    static.vm.network 'forwarded_port', guest: 80, host: 8080
+    static.vm.provision 'shell', inline: $core_deps
+    static.vm.provision 'shell', inline: $host_files 
+  end
+
+  config.vm.define "wp" do |wp|
+    wp.vm.hostname = 'artemis'
+    wp.vm.box='hashicorp/precise64'
+    wp.vm.network :private_network, ip: '192.168.50.4'
+    wp.vm.network 'forwarded_port', guest: 80, host: 9080
+    wp.vm.provision 'shell', inline: $core_deps 
+  end
+
+  
 
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
